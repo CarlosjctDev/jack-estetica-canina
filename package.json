@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node_modules/node/bin/node.exe node_modules/astro/bin/astro.mjs dev",
-    "build": "node_modules/node/bin/node.exe node_modules/astro/bin/astro.mjs build",
-    "preview": "node_modules/node/bin/node.exe node_modules/astro/bin/astro.mjs preview",
-    "check": "node_modules/node/bin/node.exe node_modules/astro/bin/astro.mjs check"
+    "dev": "node_modules/node/bin/node node_modules/astro/bin/astro.mjs dev",
+    "build": "node_modules/node/bin/node node_modules/astro/bin/astro.mjs build",
+    "preview": "node_modules/node/bin/node node_modules/astro/bin/astro.mjs preview",
+    "check": "node_modules/node/bin/node node_modules/astro/bin/astro.mjs check"
   },
   "dependencies": {
     "@fontsource-variable/cormorant-garamond": "^5.3.0",
