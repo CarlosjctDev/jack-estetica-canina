@@ -22,8 +22,7 @@ const links = [
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
       <a href="/#inicio" class="group flex items-center gap-3" aria-label={`${brandName}, ir al inicio`}>
         <picture class="block size-14 shrink-0 overflow-hidden rounded-full border border-gold/60 bg-cream shadow-[0_8px_20px_-10px_rgba(15,53,39,0.55)]">
-          <source type="image/avif" srcset="/logo.avif" />
-          <img src="/logo.webp" alt="" width="1600" height="1600" class="size-full scale-110 object-cover transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125" />
+          <img src="/logo-128.webp" srcset="/logo-128.webp 128w, /logo-640.webp 640w" sizes="56px" alt="" width="1600" height="1600" decoding="async" class="size-full scale-110 object-cover transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125" />
         </picture>
         <span class="brand-mark text-3xl">{brandName.toLowerCase()}<span class="text-holly">.</span></span>
       </a>
