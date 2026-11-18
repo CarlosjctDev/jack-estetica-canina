@@ -1,0 +1,52 @@
+---
+import "../styles/global.css";
+import { brandName, siteUrl } from "../data/site.ts";
+
+interface Props {
+  title: string;
+  description: string;
+  schema?: Record<string, unknown>;
+}
+
+const { title, description, schema } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL("/og-image.png", siteUrl).href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#dcebd8" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={`${brandName} Estética Canina`} />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={`${brandName} Estética Canina a domicilio`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {schema && <script type="application/ld+json" is:inline set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />}
+  </head>
+  <body class="min-h-screen bg-paper text-ink">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-gold focus:px-4 focus:py-2 focus:font-semibold focus:text-ink"
+    >
+      Saltar al contenido
+    </a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { brandName, groupDiscountNote, whatsappNumber, whatsappUrl } from "../data/site.ts";
+
+const updatedAt = new Date().toLocaleDateString("es-CO", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout title={`Términos — ${brandName} Estética Canina`} description={`Términos y condiciones del servicio de ${brandName} Estética Canina a domicilio en Barranquilla y Soledad.`}>
+  <Header />
+
+  <main id="contenido" class="snowfield-light border-b border-forest/15 bg-paper">
+    <div class="mx-auto max-w-4xl px-5 py-20 sm:px-8 lg:py-28">
+      <p class="eyebrow text-holly">Términos y condiciones</p>
+      <h1 class="display mt-5 text-5xl sm:text-6xl">Acuerdos claros, cuidado tranquilo.</h1>
+      <p class="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Última actualización: {updatedAt}</p>
+
+      <article class="prose prose-lg mt-12 max-w-none font-sans prose-headings:font-display prose-headings:font-medium prose-headings:text-ink prose-p:text-ink/70 prose-strong:text-ink prose-a:text-holly prose-li:marker:text-holly">
+        <h2>Servicio</h2>
+        <p>
+          {brandName} Estética Canina ofrece servicios de limpieza de oídos, corte de uñas, desenredado, baño y corte de pelo a domicilio para perros medianos y pequeños. La cobertura principal es Barranquilla y Soledad. Las consultas desde pueblos cercanos se gestionan según disponibilidad.
+        </p>
+
+        <h2>Agenda y confirmación</h2>
+        <p>
+          Las citas se coordinan por WhatsApp al número {whatsappNumber}. La reserva se considera confirmada cuando acordamos día, hora y dirección. Si necesitas cambiar o cancelar, escríbenos con la mayor antelación posible para reprogramar.
+        </p>
+
+        <h2>Precios y beneficios</h2>
+        <p>
+          El valor del servicio se informa al coordinar la cita, según el tamaño del perro, su pelaje y el trabajo requerido. {groupDiscountNote}. El obsequio navideño está sujeto a disponibilidad y se entrega con el servicio contratado.
+        </p>
+
+        <h2>Responsabilidades del cliente</h2>
+        <ul>
+          <li>Proporcionar información veraz sobre el perro, su comportamiento y cualquier condición de salud relevante.</li>
+          <li>Informar sobre alergias, sensibilidades o necesidades especiales antes del servicio.</li>
+          <li>Estar presente o disponible durante la atención a domicilio.</li>
+          <li>Autorizar el uso de imágenes o videos solo si nos los comparte voluntariamente para nuestras redes.</li>
+        </ul>
+
+        <h2>Alcance del servicio</h2>
+        <p>
+          Nuestro trabajo es de estética y cuidado no médico. No realizamos diagnósticos ni procedimientos veterinarios. Si detectamos una condición que requiera atención médica, te lo comunicaremos para que acudas a un profesional veterinario.
+        </p>
+
+        <h2>Enlaces a terceros</h2>
+        <p>
+          El sitio enlaza WhatsApp e Instagram. El uso de esas plataformas se rige por sus propios términos y políticas; no somos responsables de su funcionamiento ni de su contenido.
+        </p>
+
+        <h2>Propiedad intelectual y cambios</h2>
+        <p>
+          Los textos, el logotipo y los elementos visuales de este sitio pertenecen a {brandName} Estética Canina o a sus autores. Podemos actualizar estos términos; la fecha de actualización aparece en la parte superior. Estos acuerdos se rigen por la ley colombiana.
+        </p>
+      </article>
+
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-dark mt-12">
+        Coordinar un servicio
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

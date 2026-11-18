@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { brandName, whatsappNumber, whatsappUrl } from "../data/site.ts";
+
+const updatedAt = new Date().toLocaleDateString("es-CO", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout title={`Privacidad — ${brandName} Estética Canina`} description={`Política de privacidad de ${brandName} Estética Canina a domicilio en Barranquilla y Soledad.`}>
+  <Header />
+
+  <main id="contenido" class="snowfield-light border-b border-forest/15 bg-paper">
+    <div class="mx-auto max-w-4xl px-5 py-20 sm:px-8 lg:py-28">
+      <p class="eyebrow text-holly">Privacidad</p>
+      <h1 class="display mt-5 text-5xl sm:text-6xl">Tu información, con cuidado.</h1>
+      <p class="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-muted">Última actualización: {updatedAt}</p>
+
+      <article class="prose prose-lg mt-12 max-w-none font-sans prose-headings:font-display prose-headings:font-medium prose-headings:text-ink prose-p:text-ink/70 prose-strong:text-ink prose-a:text-holly prose-li:marker:text-holly">
+        <h2>Responsable del tratamiento</h2>
+        <p>
+          {brandName} Estética Canina es responsable de los datos personales que nos compartes al escribirnos por WhatsApp al número {whatsappNumber}. Atendemos servicios a domicilio para perros medianos y pequeños en Barranquilla, Soledad y pueblos cercanos, sujetos a disponibilidad.
+        </p>
+
+        <h2>Qué datos recopilamos</h2>
+        <ul>
+          <li>Tu nombre o la forma en la que te identifiques en WhatsApp.</li>
+          <li>Tu número de teléfono y el contenido de la conversación.</li>
+          <li>El nombre, tamaño y necesidades de tu perro.</li>
+          <li>La dirección o zona para coordinar el servicio a domicilio.</li>
+          <li>Fotos o videos que decidas enviarnos voluntariamente.</li>
+        </ul>
+
+        <h2>Para qué los usamos</h2>
+        <p>
+          Usamos la información únicamente para responder consultas, verificar disponibilidad, agendar y coordinar el servicio, y dar seguimiento a tu experiencia. No vendemos ni cedemos tus datos a terceros con fines publicitarios.
+        </p>
+
+        <h2>Conservación y seguridad</h2>
+        <p>
+          Conservamos la información durante el tiempo necesario para atender tu solicitud y mantener la relación comercial. Aplicamos medidas razonables de confidencialidad y uso limitado de la información. WhatsApp es operado por Meta, por lo que el envío de mensajes también se rige por sus propias políticas.
+        </p>
+
+        <h2>Cookies y analítica</h2>
+        <p>
+          Este sitio es estático y no instala cookies propias. Si en el futuro incorporamos herramientas de medición, publicaremos aquí su finalidad y actualizaremos esta política antes de activarlas.
+        </p>
+
+        <h2>Tus derechos</h2>
+        <p>
+          Puedes solicitar acceso, corrección, eliminación o retiro de tu consentimiento escribiéndonos por WhatsApp. Atenderemos tu solicitud dentro de los plazos razonables previstos por la ley colombiana.
+        </p>
+
+        <h2>Cambios</h2>
+        <p>
+          Podemos actualizar esta política para reflejar cambios en el servicio o en la ley. La fecha de actualización siempre aparecerá en la parte superior.
+        </p>
+      </article>
+
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-dark mt-12">
+        Consultar sobre mis datos
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

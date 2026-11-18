@@ -1,0 +1,190 @@
+@import "@fontsource-variable/fraunces/wght.css";
+@import "@fontsource-variable/fraunces/wght-italic.css";
+@import "@fontsource-variable/cormorant-garamond/wght.css";
+@import "@fontsource-variable/cormorant-garamond/wght-italic.css";
+@import "@fontsource-variable/plus-jakarta-sans/wght.css";
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-ink: #14251c;
+  --color-forest: #0f3527;
+  --color-pine: #1b5038;
+  --color-charcoal: #1d4434;
+  --color-paper: #eaf3e8;
+  --color-cream: #f6fbf3;
+  --color-smoke: #d6e8d8;
+  --color-mint: #dcebd8;
+  --color-gold: #d4af6a;
+  --color-holly: #a8272b;
+  --color-terracotta: #a8272b;
+  --color-sage: #b9d1c0;
+  --color-muted: #62796b;
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-accent: "Cormorant Garamond Variable", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --snowflake: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%239aa7a0' stroke-width='2' stroke-linecap='round' opacity='.22'%3E%3Cpath d='M80 12v136M21 46l118 68M21 114l118-68'/%3E%3Cpath d='M80 12l-9 12M80 12l9 12M80 148l-9-12M80 148l9-12M21 46l14 3M21 46l6 13M139 114l-14-3M139 114l-6-13M21 114l14-3M21 114l6-13M139 46l-14 3M139 46l-6 13'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 15px;
+  }
+
+  ::selection {
+    @apply bg-holly/20 text-forest;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-synthesis-weight: none;
+  }
+}
+
+@layer components {
+  .display {
+    @apply font-display font-medium leading-[0.86] tracking-[-0.035em];
+  }
+
+  .display-italic {
+    @apply font-accent font-light italic leading-[0.9] tracking-[-0.02em];
+  }
+
+  .brand-mark {
+    @apply font-accent font-medium leading-[0.86] tracking-[-0.035em];
+  }
+
+  .eyebrow {
+    @apply text-[0.68rem] font-semibold uppercase tracking-[0.3em];
+  }
+
+  .festive-stripe {
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--color-forest) 0 33.33%,
+      var(--color-holly) 33.33% 66.66%,
+      var(--color-gold) 66.66%
+    );
+  }
+
+  .card-premium {
+    @apply relative overflow-hidden rounded-3xl border border-ink/10 bg-cream transition-all duration-500 hover:-translate-y-1 hover:border-gold/60 hover:shadow-[0_28px_70px_-40px_rgba(15,53,39,0.45)];
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-3 rounded-full bg-forest px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-paper transition-all duration-300 hover:bg-pine hover:shadow-[0_14px_30px_-12px_rgba(18,56,43,0.55)];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-3 rounded-full border border-current px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:border-gold hover:text-gold;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-3 rounded-full bg-[#25D366] px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-ink transition-transform duration-300 hover:-translate-y-0.5;
+  }
+
+  .image-frame {
+    @apply relative rounded-[2rem] border border-ink/10 bg-cream p-3 shadow-[0_40px_80px_-50px_rgba(15,53,39,0.55)];
+  }
+
+  .stat-label {
+    @apply text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted;
+  }
+
+  .marquee {
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  .snowfield {
+    background-image: var(--snowflake);
+    background-size: 240px 240px;
+    background-position: 30px 40px;
+  }
+
+  .snowfield-light {
+    background-image: var(--snowflake);
+    background-size: 260px 260px;
+    background-position: 150px 90px;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+
+  .marquee-track span {
+    padding-right: 2.5rem;
+  }
+
+  .reveal {
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .reveal-2 {
+    animation-delay: 0.12s;
+  }
+
+  .reveal-3 {
+    animation-delay: 0.24s;
+  }
+
+  .tree-sway {
+    animation: tree-sway 7s ease-in-out infinite;
+    transform-origin: 50% 100%;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tree-sway {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track,
+  .reveal,
+  .reveal-2,
+  .reveal-3,
+  .tree-sway {
+    animation: none;
+  }
+}

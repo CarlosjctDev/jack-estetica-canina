@@ -1,0 +1,64 @@
+---
+import { brandName, groupDiscountNote, instagramLabel, instagramUrl, nearbyTownsNote, whatsappDigits, whatsappNumber, whatsappUrl } from "../data/site.ts";
+import ChristmasTree from "./ChristmasTree.astro";
+---
+
+<footer class="snowfield border-t border-gold/30 bg-forest text-paper">
+  <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
+    <div class="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_auto]">
+      <div>
+        <div class="flex items-center gap-4">
+          <picture class="block size-14 shrink-0 overflow-hidden rounded-full border border-gold/60 bg-cream shadow-[0_8px_20px_-10px_rgba(15,53,39,0.55)]">
+            <source type="image/avif" srcset="/logo.avif" />
+            <img src="/logo.webp" alt="" width="1600" height="1600" class="size-full scale-110 object-cover" />
+          </picture>
+          <p class="brand-mark text-5xl">{brandName.toLowerCase()}<span class="text-holly">.</span></p>
+        </div>
+        <p class="mt-6 max-w-sm text-sm leading-relaxed text-paper/55">
+          Estética canina a domicilio para perros medianos y pequeños en Barranquilla y Soledad. Oídos, uñas, desenredado, baño y corte de pelo, con obsequio navideño hasta agotar disponibilidad. {groupDiscountNote}. {nearbyTownsNote}
+        </p>
+      </div>
+
+      <div>
+        <p class="eyebrow text-gold">Servicios</p>
+        <ul class="mt-6 space-y-3 text-sm text-paper/65">
+          <li>Limpieza de oídos</li>
+          <li>Corte de uñas</li>
+          <li>Desenredar</li>
+          <li>Baño</li>
+          <li>Corte de pelo</li>
+          <li>Obsequio navideño</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="eyebrow text-gold">Contacto</p>
+        <div class="mt-6 space-y-3 text-sm text-paper/65">
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="block transition-colors hover:text-gold">Agendar por WhatsApp</a>
+          <a href={instagramUrl} target="_blank" rel="me noopener noreferrer" class="block transition-colors hover:text-gold">Instagram · {instagramLabel}</a>
+          <a href={`tel:+${whatsappDigits}`} class="block transition-colors hover:text-gold">{whatsappNumber}</a>
+          <p class="text-gold">{groupDiscountNote}</p>
+          <p class="text-paper/55">{nearbyTownsNote}</p>
+          <p class="text-paper/40">Barranquilla · Soledad</p>
+          <a href="/privacidad" class="block text-paper/75 transition-colors hover:text-gold">Privacidad</a>
+          <a href="/terminos" class="block text-paper/75 transition-colors hover:text-gold">Términos</a>
+        </div>
+      </div>
+
+      <div class="flex justify-center lg:justify-end" aria-hidden="true">
+        <div class="tree-sway h-48 w-40 drop-shadow-[0_24px_30px_rgba(0,0,0,0.35)] lg:h-64 lg:w-52">
+          <ChristmasTree />
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col gap-3 border-t border-paper/10 pt-6 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-paper/55 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <p>© {new Date().getFullYear()} {brandName} Estética Canina</p>
+        <a href="/privacidad" class="text-gold/80 transition-colors hover:text-gold">Privacidad</a>
+        <a href="/terminos" class="text-gold/80 transition-colors hover:text-gold">Términos</a>
+      </div>
+      <p>Hecho con calma, cariño y espíritu navideño</p>
+    </div>
+  </div>
+</footer>
