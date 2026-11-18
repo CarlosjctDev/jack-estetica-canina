@@ -256,12 +256,12 @@ const localBusinessSchema = {
         <div class="mt-16 grid gap-5 lg:grid-cols-2">
           {
             zones.map((zone) => (
-              <article class:list={["relative overflow-hidden rounded-3xl p-9 sm:p-12", zone.tone]}>
+              <article class:list={["relative overflow-hidden rounded-3xl p-6 sm:p-12", zone.tone]}>
                 <div class="flex items-start justify-between">
                   <span class="eyebrow text-gold">{zone.label}</span>
                   <span class="eyebrow opacity-50">A domicilio</span>
                 </div>
-                <p class="display mt-20 text-6xl sm:text-7xl">{zone.name}</p>
+                <p class="display mt-20 text-[clamp(2rem,10vw,4.5rem)] sm:text-7xl">{zone.name}</p>
                 <p class="mt-5 max-w-sm text-sm leading-relaxed opacity-65">{zone.description}</p>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-outline mt-10">
                   Agendar en {zone.name}
