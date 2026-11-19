@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { brandName, siteUrl } from "../data/site.ts";
+import { brandName, mantenimiento, siteUrl } from "../data/site.ts";
 
 interface Props {
   title: string;
@@ -20,6 +20,7 @@ const ogImageUrl = new URL("/og-image.png", siteUrl).href;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#dcebd8" />
+    {mantenimiento && <meta name="robots" content="noindex,nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={`${brandName} Estética Canina`} />
@@ -38,7 +39,7 @@ const ogImageUrl = new URL("/og-image.png", siteUrl).href;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    {schema && <script type="application/ld+json" is:inline set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />}
+    {!mantenimiento && schema && <script type="application/ld+json" is:inline set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />}
   </head>
   <body class="min-h-screen bg-paper text-ink">
     <a
@@ -47,6 +48,24 @@ const ogImageUrl = new URL("/og-image.png", siteUrl).href;
     >
       Saltar al contenido
     </a>
-    <slot />
+    {
+      mantenimiento ? (
+        <main id="contenido" class="relative flex min-h-screen items-center justify-center overflow-hidden bg-forest px-5 py-20 text-paper">
+          <div class="snowfield absolute inset-0" aria-hidden="true"></div>
+          <div class="relative w-full max-w-xl text-center">
+            <div class="mx-auto flex size-16 items-center justify-center rounded-full border border-gold/60 bg-cream">
+              <img src="/logo-128.webp" alt="" width="128" height="128" class="size-12 object-contain" />
+            </div>
+            <p class="eyebrow mt-8 text-gold">Mantenimiento</p>
+            <h1 class="display mt-4 text-[clamp(3rem,12vw,6rem)] leading-[0.9]">Volvemos pronto.</h1>
+            <p class="mx-auto mt-6 max-w-md text-base leading-relaxed text-paper/65">
+              Estamos preparando todo para seguir llevando estética canina a domicilio en Barranquilla y Soledad. Gracias por tu paciencia.
+            </p>
+          </div>
+        </main>
+      ) : (
+        <slot />
+      )
+    }
   </body>
 </html>

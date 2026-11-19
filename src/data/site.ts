@@ -1,6 +1,9 @@
 export const brandName = "Jack";
 export const siteUrl = "https://jack.bcarestyle.com";
 
+const rawMantenimiento = process.env.MANTENIMIENTO ?? process.env.mantenimiento ?? "false";
+export const mantenimiento = rawMantenimiento === "true";
+
 export const whatsappNumber = "+57 302 840 0101";
 export const whatsappDigits = whatsappNumber.replace(/\D/g, "");
 export const instagramUrl = "https://www.instagram.com/tu_usuario/";

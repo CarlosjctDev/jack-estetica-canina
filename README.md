@@ -63,6 +63,18 @@ Estado actual:
 
 Cuando cambies el dominio, el teléfono o el perfil de Instagram, edita solo `src/data/site.ts`. No hace falta tocar los componentes.
 
+## Modo mantenimiento
+
+La variable de entorno `MANTENIMIENTO` controla el modo mantenimiento y por defecto es `false`.
+
+Copia `.env.example` a `.env` y ajusta el valor:
+
+```env
+MANTENIMIENTO=false
+```
+
+Cuando es `true`, el sitio muestra una pantalla de mantenimiento, agrega `noindex,nofollow` y oculta el JSON-LD. El cambio se aplica al ejecutar `bun run build`; no es un valor dinámico en runtime.
+
 ## Estructura
 
 ```text
