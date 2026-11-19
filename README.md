@@ -117,6 +117,19 @@ El resultado es 100% estático y queda en `dist/`.
 - Publish directory: `dist`
 - Compatible con Vercel, Netlify, Cloudflare Pages o cualquier hosting estático.
 
+### Cloudflare Pages
+
+El sitio es estático: **no necesita el adaptador `@astrojs/cloudflare`**. `wrangler.toml` declara `pages_build_output_dir = "./dist"` para que Wrangler no intente migrar el proyecto a Workers ni ejecute `astro add cloudflare`.
+
+Si despliegas por CLI, usa un proyecto Pages ya creado:
+
+```bash
+bun run build
+npx wrangler pages deploy dist --project-name jack-estetica-canina --branch main
+```
+
+Si el proyecto Pages no existe, créalo en el dashboard de Cloudflare o con `wrangler pages project create jack-estetica-canina --production-branch main --force`. No omitas `--force`: sin él, Wrangler puede cambiar el proyecto a Workers e instalar el adaptador.
+
 No hay backend ni formularios: todas las acciones de contacto abren WhatsApp con el mensaje definido en `src/data/site.ts`.
 
 ## Notas de diseño
