@@ -14,7 +14,7 @@ const updatedAt = new Date().toLocaleDateString("es-CO", {
 <BaseLayout title={`Términos — ${brandName} Estética Canina`} description={`Términos y condiciones del servicio de ${brandName} Estética Canina a domicilio en Barranquilla y Soledad.`}>
   <Header />
 
-  <main id="contenido" class="snowfield-light border-b border-forest/15 bg-paper">
+  <main id="contenido" tabindex="-1" class="snowfield-light border-b border-forest/15 bg-paper">
     <div class="mx-auto max-w-4xl px-5 py-20 sm:px-8 lg:py-28">
       <p class="eyebrow text-holly">Términos y condiciones</p>
       <h1 class="display mt-5 text-5xl sm:text-6xl">Acuerdos claros, cuidado tranquilo.</h1>
@@ -62,6 +62,7 @@ const updatedAt = new Date().toLocaleDateString("es-CO", {
 
       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-dark mt-12">
         Coordinar un servicio
+        <span class="sr-only"> por WhatsApp (abre en nueva pestaña)</span>
         <span aria-hidden="true">→</span>
       </a>
     </div>

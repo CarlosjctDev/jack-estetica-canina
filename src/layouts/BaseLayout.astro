@@ -50,15 +50,15 @@ const ogImageUrl = new URL("/og-image.png", siteUrl).href;
     </a>
     {
       mantenimiento ? (
-        <main id="contenido" class="relative flex min-h-screen items-center justify-center overflow-hidden bg-forest px-5 py-20 text-paper">
+        <main id="contenido" tabindex="-1" class="relative flex min-h-screen items-center justify-center overflow-hidden bg-forest px-5 py-20 text-paper">
           <div class="snowfield absolute inset-0" aria-hidden="true"></div>
           <div class="relative w-full max-w-xl text-center">
-            <div class="mx-auto flex size-16 items-center justify-center rounded-full border border-gold/60 bg-cream">
-              <img src="/logo-128.webp" alt="" width="128" height="128" class="size-12 object-contain" />
-            </div>
+            <picture class="mx-auto block size-20 shrink-0 overflow-hidden rounded-full border border-gold/60 bg-cream shadow-[0_8px_20px_-10px_rgba(15,53,39,0.55)]">
+              <img src="/logo-128.webp" srcset="/logo-128.webp 128w, /logo-640.webp 640w" sizes="80px" alt={`Logotipo de ${brandName} Estética Canina`} width="1600" height="1600" decoding="async" class="size-full scale-110 object-cover" />
+            </picture>
             <p class="eyebrow mt-8 text-gold">Mantenimiento</p>
             <h1 class="display mt-4 text-[clamp(3rem,12vw,6rem)] leading-[0.9]">Volvemos pronto.</h1>
-            <p class="mx-auto mt-6 max-w-md text-base leading-relaxed text-paper/65">
+            <p class="mx-auto mt-6 max-w-md text-base leading-relaxed text-paper/80">
               Estamos preparando todo para seguir llevando estética canina a domicilio en Barranquilla y Soledad. Gracias por tu paciencia.
             </p>
           </div>

@@ -1,6 +1,8 @@
 ---
 import { brandName, groupDiscountNote, instagramLabel, instagramUrl, nearbyTownsNote, whatsappDigits, whatsappNumber, whatsappUrl } from "../data/site.ts";
 import ChristmasTree from "./ChristmasTree.astro";
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 ---
 
 <footer class="snowfield border-t border-gold/30 bg-forest text-paper">
@@ -9,18 +11,18 @@ import ChristmasTree from "./ChristmasTree.astro";
       <div>
         <div class="flex items-center gap-4">
           <picture class="block size-14 shrink-0 overflow-hidden rounded-full border border-gold/60 bg-cream shadow-[0_8px_20px_-10px_rgba(15,53,39,0.55)]">
-            <img src="/logo-128.webp" srcset="/logo-128.webp 128w, /logo-640.webp 640w" sizes="56px" alt="" width="1600" height="1600" decoding="async" class="size-full scale-110 object-cover" />
+            <img src="/logo-128.webp" srcset="/logo-128.webp 128w, /logo-640.webp 640w" sizes="56px" alt="" width="1600" height="1600" loading="lazy" decoding="async" class="size-full scale-110 object-cover" />
           </picture>
           <p class="brand-mark text-5xl">{brandName.toLowerCase()}<span class="text-holly">.</span></p>
         </div>
-        <p class="mt-6 max-w-sm text-sm leading-relaxed text-paper/55">
+        <p class="mt-6 max-w-sm text-sm leading-relaxed text-paper/75">
           Estética canina a domicilio para perros medianos y pequeños en Barranquilla y Soledad. Oídos, uñas, desenredado, baño y corte de pelo, con obsequio navideño hasta agotar disponibilidad. {groupDiscountNote}. {nearbyTownsNote}
         </p>
       </div>
 
       <div>
-        <p class="eyebrow text-gold">Servicios</p>
-        <ul class="mt-6 space-y-3 text-sm text-paper/65">
+        <h2 class="eyebrow text-gold">Servicios</h2>
+        <ul class="mt-6 space-y-3 text-sm text-paper/75">
           <li>Limpieza de oídos</li>
           <li>Corte de uñas</li>
           <li>Desenredar</li>
@@ -31,16 +33,20 @@ import ChristmasTree from "./ChristmasTree.astro";
       </div>
 
       <div>
-        <p class="eyebrow text-gold">Contacto</p>
-        <div class="mt-6 space-y-3 text-sm text-paper/65">
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="block transition-colors hover:text-gold">Agendar por WhatsApp</a>
-          <a href={instagramUrl} target="_blank" rel="me noopener noreferrer" class="block transition-colors hover:text-gold">Instagram · {instagramLabel}</a>
+        <h2 class="eyebrow text-gold">Contacto</h2>
+        <div class="mt-6 space-y-3 text-sm text-paper/75">
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="block transition-colors hover:text-gold">
+            Agendar por WhatsApp<span class="sr-only"> (abre en nueva pestaña)</span>
+          </a>
+          <a href={instagramUrl} target="_blank" rel="me noopener noreferrer" class="block transition-colors hover:text-gold">
+            Instagram · {instagramLabel}<span class="sr-only"> (abre en nueva pestaña)</span>
+          </a>
           <a href={`tel:+${whatsappDigits}`} class="block transition-colors hover:text-gold">{whatsappNumber}</a>
           <p class="text-gold">{groupDiscountNote}</p>
-          <p class="text-paper/55">{nearbyTownsNote}</p>
-          <p class="text-paper/40">Barranquilla · Soledad</p>
-          <a href="/privacidad" class="block text-paper/75 transition-colors hover:text-gold">Privacidad</a>
-          <a href="/terminos" class="block text-paper/75 transition-colors hover:text-gold">Términos</a>
+          <p class="text-paper/70">{nearbyTownsNote}</p>
+          <p class="text-paper/65">Barranquilla · Soledad</p>
+          <a href="/privacidad" aria-current={currentPath === "/privacidad" ? "page" : undefined} class="block text-paper/85 transition-colors hover:text-gold">Privacidad</a>
+          <a href="/terminos" aria-current={currentPath === "/terminos" ? "page" : undefined} class="block text-paper/85 transition-colors hover:text-gold">Términos</a>
         </div>
       </div>
 
@@ -51,11 +57,13 @@ import ChristmasTree from "./ChristmasTree.astro";
       </div>
     </div>
 
-    <div class="mt-16 flex flex-col gap-3 border-t border-paper/10 pt-6 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-paper/55 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mt-16 flex flex-col gap-3 border-t border-paper/10 pt-6 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-paper/70 sm:flex-row sm:items-center sm:justify-between">
       <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
         <p>© {new Date().getFullYear()} {brandName} Estética Canina</p>
-        <a href="/privacidad" class="text-gold/80 transition-colors hover:text-gold">Privacidad</a>
-        <a href="/terminos" class="text-gold/80 transition-colors hover:text-gold">Términos</a>
+        <nav aria-label="Enlaces legales" class="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <a href="/privacidad" aria-current={currentPath === "/privacidad" ? "page" : undefined} class="text-gold transition-colors hover:text-paper">Privacidad</a>
+          <a href="/terminos" aria-current={currentPath === "/terminos" ? "page" : undefined} class="text-gold transition-colors hover:text-paper">Términos</a>
+        </nav>
       </div>
       <p>Hecho con calma, cariño y espíritu navideño</p>
     </div>

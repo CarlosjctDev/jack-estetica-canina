@@ -11,39 +11,82 @@ const links = [
 <header class="sticky top-0 z-50">
   <div class="festive-stripe" aria-hidden="true"></div>
 
-  <div class="bg-forest text-paper/70">
+  <div class="bg-forest text-paper/80">
     <div class="mx-auto flex h-8 max-w-7xl items-center justify-between gap-4 px-5 text-[0.6rem] font-semibold uppercase tracking-[0.22em] sm:px-8">
       <span class="text-gold">Obsequio navideño</span>
-      <span class="hidden truncate text-paper/55 sm:inline">Lazos · corbatas · pañoletas · {groupDiscountNote}</span>
+      <span class="hidden truncate text-paper/70 sm:inline">Lazos · corbatas · pañoletas · {groupDiscountNote}</span>
     </div>
   </div>
 
   <div class="border-b border-ink/10 bg-paper/90 backdrop-blur-xl">
-    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-      <a href="/#inicio" class="group flex items-center gap-3" aria-label={`${brandName}, ir al inicio`}>
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-2 px-5 sm:gap-4 sm:px-8">
+      <a href="/#inicio" class="group flex shrink-0 items-center gap-3" aria-label={`${brandName}, ir al inicio`}>
         <picture class="block size-14 shrink-0 overflow-hidden rounded-full border border-gold/60 bg-cream shadow-[0_8px_20px_-10px_rgba(15,53,39,0.55)]">
           <img src="/logo-128.webp" srcset="/logo-128.webp 128w, /logo-640.webp 640w" sizes="56px" alt="" width="1600" height="1600" decoding="async" class="size-full scale-110 object-cover transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125" />
         </picture>
-        <span class="brand-mark text-3xl">{brandName.toLowerCase()}<span class="text-holly">.</span></span>
+        <span class="brand-mark hidden text-3xl sm:inline">{brandName.toLowerCase()}<span class="text-holly">.</span></span>
       </a>
 
       <nav aria-label="Navegación principal" class="hidden items-center gap-9 md:flex">
         {
           links.map((link) => (
-            <a href={link.href} class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-ink/65 transition-colors hover:text-gold">
+            <a href={link.href} class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-ink/70 transition-colors hover:text-holly">
               {link.label}
             </a>
           ))
         }
-        <a href={instagramUrl} target="_blank" rel="me noopener noreferrer" class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-ink/65 transition-colors hover:text-holly">
-          Instagram
+        <a href={instagramUrl} target="_blank" rel="me noopener noreferrer" class="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-ink/70 transition-colors hover:text-holly">
+          Instagram<span class="sr-only"> (abre en nueva pestaña)</span>
         </a>
       </nav>
 
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-paper transition-all duration-300 hover:bg-pine">
+      <details class="relative md:hidden" data-mobile-menu>
+        <summary class="flex cursor-pointer list-none items-center gap-2 rounded-full border border-ink/20 px-4 py-3 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-ink [&::-webkit-details-marker]:hidden">
+          Menú<span class="sr-only"> de navegación</span>
+          <span aria-hidden="true">▾</span>
+        </summary>
+        <nav aria-label="Navegación móvil" class="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-64 rounded-2xl border border-ink/10 bg-paper p-3 shadow-xl">
+          <ul class="space-y-1">
+            {
+              links.map((link) => (
+                <li>
+                  <a href={link.href} class="block rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-ink/80 transition-colors hover:bg-mint hover:text-forest">
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+            <li>
+              <a href={instagramUrl} target="_blank" rel="me noopener noreferrer" class="block rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-ink/80 transition-colors hover:bg-mint hover:text-forest">
+                Instagram<span class="sr-only"> (abre en nueva pestaña)</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </details>
+
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="inline-flex shrink-0 items-center gap-2 rounded-full bg-forest px-4 py-3 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-paper transition-all duration-300 hover:bg-pine sm:px-6 sm:text-[0.65rem] sm:tracking-[0.2em]">
         <span class="size-1.5 rounded-full bg-gold" aria-hidden="true"></span>
         Agendar
+        <span class="sr-only"> cita por WhatsApp (abre en nueva pestaña)</span>
       </a>
     </div>
   </div>
 </header>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>("details[data-mobile-menu]").forEach((details) => {
+    details.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        details.removeAttribute("open");
+      });
+    });
+
+    details.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && details.open) {
+        details.removeAttribute("open");
+        details.querySelector("summary")?.focus();
+      }
+    });
+  });
+</script>

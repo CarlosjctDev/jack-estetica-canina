@@ -48,6 +48,7 @@ Toda la información editable vive en `src/data/site.ts`:
 | -------------------- | ------------------------------------------------------------------- |
 | `brandName`          | Nombre de marca mostrado en títulos, footer y mensajes.             |
 | `siteUrl`            | Dominio público. Se usa en canonical, OG/Twitter, sitemap, robots y JSON-LD. |
+| `mantenimiento`      | Constante en `src/data/site.ts`. Activa la pantalla de mantenimiento en todas las páginas. |
 | `whatsappNumber`     | Teléfono único de contacto. De aquí se derivan `whatsappDigits` y `whatsappUrl`. |
 | `whatsappMessage`    | Texto preconstruido para la cita por WhatsApp.                      |
 | `instagramUrl`       | Perfil de Instagram. De aquí se deriva `instagramLabel`.            |
@@ -58,6 +59,7 @@ Toda la información editable vive en `src/data/site.ts`:
 Estado actual:
 
 - `siteUrl`: `https://jack.bcarestyle.com`
+- `mantenimiento`: `true` (sitio en mantenimiento).
 - `whatsappNumber`: `+57 302 840 0101`
 - `instagramUrl`: pendiente de reemplazar `https://www.instagram.com/tu_usuario/` por el perfil real.
 
@@ -65,15 +67,17 @@ Cuando cambies el dominio, el teléfono o el perfil de Instagram, edita solo `sr
 
 ## Modo mantenimiento
 
-La variable de entorno `MANTENIMIENTO` controla el modo mantenimiento y por defecto es `false`.
+El modo mantenimiento se controla con la constante `mantenimiento` en `src/data/site.ts`, actualmente en `true`.
 
-Copia `.env.example` a `.env` y ajusta el valor:
+Para activarlo o desactivarlo, cambia la constante:
 
-```env
-MANTENIMIENTO=false
+```ts
+export const mantenimiento = false;
 ```
 
-Cuando es `true`, el sitio muestra una pantalla de mantenimiento, agrega `noindex,nofollow` y oculta el JSON-LD. El cambio se aplica al ejecutar `bun run build`; no es un valor dinámico en runtime.
+Luego ejecuta `bun run build` y redespliega. El modo mantenimiento no usa variables de entorno ni configuración adicional en Cloudflare.
+
+Cuando está en `true`, el sitio muestra una pantalla de mantenimiento en todas las páginas, agrega `noindex,nofollow` y oculta el JSON-LD.
 
 ## Estructura
 

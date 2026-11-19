@@ -56,12 +56,14 @@ const zones = [
     name: "Barranquilla",
     description: "Atención a domicilio en sectores de Barranquilla. Coordinamos la hora que mejor te quede.",
     tone: "bg-paper text-ink",
+    labelTone: "text-gold-ink",
   },
   {
     label: "Zona 02",
     name: "Soledad",
     description: "También llegamos a Soledad con el mismo servicio, el mismo cuidado y sin desplazamientos.",
     tone: "border border-paper/25 text-paper",
+    labelTone: "text-gold",
   },
 ];
 
@@ -108,7 +110,7 @@ const localBusinessSchema = {
 <BaseLayout title={`${brandName} — Estética canina a domicilio`} description={pageDescription} schema={localBusinessSchema}>
   <Header />
 
-  <main id="contenido">
+  <main id="contenido" tabindex="-1">
     <section id="inicio" class="snowfield-light relative overflow-hidden border-b border-forest/15 bg-mint">
       <div class="relative mx-auto grid max-w-7xl gap-16 px-5 pb-24 pt-16 sm:px-8 lg:min-h-[88vh] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pb-32 lg:pt-24">
         <div class="reveal">
@@ -119,7 +121,7 @@ const localBusinessSchema = {
 
           <h1 class="mt-8 leading-[0.78]">
             <span class="brand-mark block text-[clamp(6rem,15vw,13rem)]">{brandName}<span class="text-holly">.</span></span>
-            <span class="display-italic mt-1 block text-[0.34em] text-gold">a domicilio</span>
+            <span class="display-italic mt-1 block text-[0.34em] text-gold-ink">a domicilio</span>
           </h1>
 
           <p class="mt-8 max-w-lg text-lg leading-relaxed text-ink/70">
@@ -134,6 +136,7 @@ const localBusinessSchema = {
           <div class="mt-10 flex flex-wrap items-center gap-4">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-dark">
               Agendar por WhatsApp
+              <span class="sr-only"> (abre en nueva pestaña)</span>
               <span aria-hidden="true">→</span>
             </a>
             <a href="#servicios" class="btn-outline">
@@ -225,18 +228,18 @@ const localBusinessSchema = {
               ]}
             >
               <div class="flex items-start justify-between">
-                <span class="display text-6xl text-gold/70">{service.number}</span>
-                <span class:list={["eyebrow", service.highlight ? "text-gold/80" : "text-muted"]}>{service.tag}</span>
+                <span class="display text-6xl text-gold/70" aria-hidden="true">{service.number}</span>
+                <span class:list={["eyebrow", service.highlight ? "text-paper" : "text-muted"]}>{service.tag}</span>
               </div>
               <h3 class="display mt-10 text-4xl">{service.title}</h3>
-              <p class:list={["mt-4 text-sm leading-relaxed", service.highlight ? "text-paper/75" : "text-ink/60"]}>{service.description}</p>
+              <p class:list={["mt-4 text-sm leading-relaxed", service.highlight ? "text-paper/85" : "text-ink/70"]}>{service.description}</p>
               <span class="mt-10 block h-px w-10 bg-gold transition-all duration-500 group-hover:w-full" aria-hidden="true"></span>
             </article>
           ))
         }
       </div>
 
-      <p class="mt-8 text-sm text-ink/60">
+      <p class="mt-8 text-sm text-ink/70">
         Atendemos perros medianos y pequeños. Si son 2+ perros en la misma zona, consulta nuestra tarifa preferencial por grupo. ¿No sabes qué necesita tu perro? Escríbenos y lo revisamos juntos por WhatsApp.
       </p>
     </section>
@@ -248,7 +251,7 @@ const localBusinessSchema = {
             <p class="eyebrow text-gold">02 / Cobertura</p>
             <h2 class="display mt-5 max-w-2xl text-6xl text-paper sm:text-7xl lg:text-8xl">Llegamos a tu puerta.</h2>
           </div>
-          <p class="max-w-sm text-base leading-relaxed text-paper/55">
+          <p class="max-w-sm text-base leading-relaxed text-paper/75">
             Servicio a domicilio en Barranquilla y Soledad. Tú pones la dirección; nosotros ponemos todo lo demás.
           </p>
         </div>
@@ -258,13 +261,13 @@ const localBusinessSchema = {
             zones.map((zone) => (
               <article class:list={["relative overflow-hidden rounded-3xl p-6 sm:p-12", zone.tone]}>
                 <div class="flex items-start justify-between">
-                  <span class="eyebrow text-gold">{zone.label}</span>
-                  <span class="eyebrow opacity-50">A domicilio</span>
+                  <span class:list={["eyebrow", zone.labelTone]}>{zone.label}</span>
+                  <span class="eyebrow opacity-75">A domicilio</span>
                 </div>
-                <p class="display mt-20 text-[clamp(2rem,10vw,4.5rem)] sm:text-7xl">{zone.name}</p>
-                <p class="mt-5 max-w-sm text-sm leading-relaxed opacity-65">{zone.description}</p>
+                <h3 class="display mt-20 text-[clamp(2rem,10vw,4.5rem)] sm:text-7xl">{zone.name}</h3>
+                <p class="mt-5 max-w-sm text-sm leading-relaxed opacity-80">{zone.description}</p>
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-outline mt-10">
-                  Agendar en {zone.name}
+                  Agendar en {zone.name}<span class="sr-only"> (abre en nueva pestaña)</span>
                 </a>
                 <span class="display pointer-events-none absolute -bottom-10 right-4 text-[12rem] opacity-5" aria-hidden="true">
                   {zone.label.slice(-2)}
@@ -317,9 +320,9 @@ const localBusinessSchema = {
             steps.map((step) => (
               <article class="relative">
                 <span class="relative z-10 block size-2 rounded-full bg-gold ring-4 ring-cream" aria-hidden="true"></span>
-                <span class="display mt-8 block text-5xl text-gold/60">{step.number}</span>
+                <span class="display mt-8 block text-5xl text-gold/60" aria-hidden="true">{step.number}</span>
                 <h3 class="mt-4 font-display text-3xl font-medium">{step.title}</h3>
-                <p class="mt-3 max-w-xs text-sm leading-relaxed text-ink/60">{step.description}</p>
+                <p class="mt-3 max-w-xs text-sm leading-relaxed text-ink/70">{step.description}</p>
               </article>
             ))
           }
@@ -339,6 +342,7 @@ const localBusinessSchema = {
             <div class="mt-9">
               <a href={instagramUrl} target="_blank" rel="me noopener noreferrer" class="btn-dark">
                 Seguir en Instagram
+                <span class="sr-only"> (abre en nueva pestaña)</span>
                 <span aria-hidden="true">↗</span>
               </a>
             </div>
@@ -354,7 +358,7 @@ const localBusinessSchema = {
                   <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
                 </svg>
                 <p class="display mt-10 text-4xl sm:text-5xl">{instagramLabel}</p>
-                <p class="mt-4 max-w-xs text-sm leading-relaxed text-paper/60">
+                <p class="mt-4 max-w-xs text-sm leading-relaxed text-paper/75">
                   Resultados reales, consejos de cuidado y novedades de {brandName}.
                 </p>
                 <p class="mt-10 border-t border-paper/15 pt-5 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-gold">
@@ -375,11 +379,12 @@ const localBusinessSchema = {
         </h2>
 
         <div class="mt-14 flex flex-col gap-8 border-t border-paper/15 pt-8 md:flex-row md:items-end md:justify-between">
-          <p class="max-w-md text-lg leading-relaxed text-paper/60">
+          <p class="max-w-md text-lg leading-relaxed text-paper/75">
             Perros medianos y pequeños. Escríbenos por WhatsApp y coordinamos día, hora y dirección en Barranquilla o Soledad. Si son 2+ perros en la misma zona, consulta nuestra tarifa preferencial. {nearbyTownsNote} Consulta también la disponibilidad de tu obsequio navideño.
           </p>
           <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
             Agendar cita
+            <span class="sr-only"> por WhatsApp (abre en nueva pestaña)</span>
             <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -390,12 +395,12 @@ const localBusinessSchema = {
 
   <Footer />
 
-  <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+  <nav aria-label="Accesos rápidos" class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
     <a
       href={instagramUrl}
       target="_blank"
       rel="me noopener noreferrer"
-      aria-label={`Ver ${brandName} en Instagram`}
+      aria-label={`Ver ${brandName} en Instagram (abre en nueva pestaña)`}
       class="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-forest/95 px-4 py-3 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-paper shadow-[0_18px_45px_-18px_rgba(0,0,0,0.6)] backdrop-blur transition-transform duration-300 hover:-translate-y-1"
     >
       <svg viewBox="0 0 24 24" class="size-4 text-gold" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
@@ -409,7 +414,7 @@ const localBusinessSchema = {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Agendar cita por WhatsApp"
+      aria-label="Agendar cita por WhatsApp (abre en nueva pestaña)"
       class="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-4 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-ink shadow-[0_18px_45px_-18px_rgba(0,0,0,0.6)] transition-transform duration-300 hover:-translate-y-1"
     >
       <svg viewBox="0 0 24 24" class="size-5" fill="currentColor" aria-hidden="true">
@@ -417,5 +422,5 @@ const localBusinessSchema = {
       </svg>
       Agendar
     </a>
-  </div>
+  </nav>
 </BaseLayout>

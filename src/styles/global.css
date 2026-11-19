@@ -16,10 +16,11 @@
   --color-smoke: #d6e8d8;
   --color-mint: #dcebd8;
   --color-gold: #d4af6a;
+  --color-gold-ink: #7d581e;
   --color-holly: #a8272b;
   --color-terracotta: #a8272b;
   --color-sage: #b9d1c0;
-  --color-muted: #62796b;
+  --color-muted: #52695b;
   --font-display: "Fraunces Variable", Georgia, serif;
   --font-accent: "Cormorant Garamond Variable", Georgia, serif;
   --font-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
@@ -32,6 +33,15 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 7.5rem;
+  }
+
+  section[id] {
+    scroll-margin-top: 7.5rem;
+  }
+
+  main:focus {
+    outline: none;
   }
 
   body {
@@ -175,9 +185,27 @@
   }
 }
 
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--color-forest);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
   .marquee-track,
@@ -186,5 +214,15 @@
   .reveal-3,
   .tree-sway {
     animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 3px solid CanvasText;
+    box-shadow: none;
   }
 }
