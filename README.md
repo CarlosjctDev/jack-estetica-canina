@@ -48,7 +48,12 @@ Toda la información editable vive en `src/data/site.ts`:
 | -------------------- | ------------------------------------------------------------------- |
 | `brandName`          | Nombre de marca mostrado en títulos, footer y mensajes.             |
 | `siteUrl`            | Dominio público. Se usa en canonical, OG/Twitter, sitemap, robots y JSON-LD. |
-| `mantenimiento`      | Constante en `src/data/site.ts`. Activa la pantalla de mantenimiento en todas las páginas. |
+| `proximamente`       | Constante en `src/data/site.ts`. Activa la pantalla de gran apertura en todas las páginas. |
+| `disponibleDesde`    | Fecha ISO de apertura, con offset de Bogotá. Alimenta el contador y el elemento `<time>`. |
+| `disponibleDesdeLabel` | Texto visible de la fecha de apertura.                            |
+| `aperturaEtiqueta`   | Badge llamativo de gran apertura y descuento de lanzamiento.        |
+| `aperturaTitulo`     | Titular principal de la pantalla de apertura.                       |
+| `aperturaDetalle`    | Copy del descuento de apertura.                                     |
 | `whatsappNumber`     | Teléfono único de contacto. De aquí se derivan `whatsappDigits` y `whatsappUrl`. |
 | `whatsappMessage`    | Texto preconstruido para la cita por WhatsApp.                      |
 | `instagramUrl`       | Perfil de Instagram. De aquí se deriva `instagramLabel`.            |
@@ -59,25 +64,28 @@ Toda la información editable vive en `src/data/site.ts`:
 Estado actual:
 
 - `siteUrl`: `https://jack.bcarestyle.com`
-- `mantenimiento`: `true` (sitio en mantenimiento).
+- `proximamente`: `true` (pantalla de gran apertura activa).
+- `disponibleDesde`: `2026-12-01T00:00:00-05:00` (01 de diciembre de 2026, hora Bogotá).
 - `whatsappNumber`: `+57 302 840 0101`
-- `instagramUrl`: pendiente de reemplazar `https://www.instagram.com/tu_usuario/` por el perfil real.
+- `instagramUrl`: `https://www.instagram.com/jack.estetica.canina/`
 
 Cuando cambies el dominio, el teléfono o el perfil de Instagram, edita solo `src/data/site.ts`. No hace falta tocar los componentes.
 
-## Modo mantenimiento
+## Próximo lanzamiento
 
-El modo mantenimiento se controla con la constante `mantenimiento` en `src/data/site.ts`, actualmente en `true`.
+La pantalla de gran apertura se controla con la constante `proximamente` en `src/data/site.ts`, actualmente en `true`.
 
-Para activarlo o desactivarlo, cambia la constante:
+Mientras esté en `true`, el sitio muestra en todas las páginas el badge de descuento, la fecha `disponibleDesdeLabel` y un contador en vivo hasta `disponibleDesde`. El contador usa la zona `-05:00` de Bogotá; cuando llega la fecha muestra `¡Ya estamos disponibles!`.
+
+Para publicar la landing completa, cambia la constante:
 
 ```ts
-export const mantenimiento = false;
+export const proximamente = false;
 ```
 
-Luego ejecuta `bun run build` y redespliega. El modo mantenimiento no usa variables de entorno ni configuración adicional en Cloudflare.
+Luego ejecuta `bun run build` y redespliega. No usa variables de entorno ni configuración adicional en Cloudflare.
 
-Cuando está en `true`, el sitio muestra una pantalla de mantenimiento en todas las páginas, agrega `noindex,nofollow` y oculta el JSON-LD.
+Cuando está en `true`, la pantalla de apertura agrega `noindex,nofollow` y oculta el JSON-LD.
 
 ## Estructura
 
