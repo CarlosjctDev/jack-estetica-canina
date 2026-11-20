@@ -1,9 +1,9 @@
 export const brandName = "Jack";
 export const siteUrl = "https://jack.bcarestyle.com";
 
-export const proximamente = true;
 export const disponibleDesde = "2026-12-01T00:00:00-05:00";
 export const disponibleDesdeLabel = "01 de diciembre de 2026";
+export const proximamente = Date.now() < new Date(disponibleDesde).getTime();
 export const aperturaEtiqueta = "Gran apertura · descuento de lanzamiento";
 export const aperturaTitulo = "Gran apertura con descuento.";
 export const aperturaDetalle = "Descuento de apertura para las primeras citas. Además, tarifa preferencial para 2+ perros en la misma zona.";

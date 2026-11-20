@@ -48,7 +48,7 @@ Toda la información editable vive en `src/data/site.ts`:
 | -------------------- | ------------------------------------------------------------------- |
 | `brandName`          | Nombre de marca mostrado en títulos, footer y mensajes.             |
 | `siteUrl`            | Dominio público. Se usa en canonical, OG/Twitter, sitemap, robots y JSON-LD. |
-| `proximamente`       | Constante en `src/data/site.ts`. Activa la pantalla de gran apertura en todas las páginas. |
+| `proximamente`       | Se calcula en `src/data/site.ts`: es `true` mientras la fecha actual sea anterior a `disponibleDesde`. |
 | `disponibleDesde`    | Fecha ISO de apertura, con offset de Bogotá. Alimenta el contador y el elemento `<time>`. |
 | `disponibleDesdeLabel` | Texto visible de la fecha de apertura.                            |
 | `aperturaEtiqueta`   | Badge llamativo de gran apertura y descuento de lanzamiento.        |
@@ -64,7 +64,7 @@ Toda la información editable vive en `src/data/site.ts`:
 Estado actual:
 
 - `siteUrl`: `https://jack.bcarestyle.com`
-- `proximamente`: `true` (pantalla de gran apertura activa).
+- `proximamente`: calculado automáticamente; `true` hasta el 01 de diciembre de 2026.
 - `disponibleDesde`: `2026-12-01T00:00:00-05:00` (01 de diciembre de 2026, hora Bogotá).
 - `whatsappNumber`: `+57 302 840 0101`
 - `instagramUrl`: `https://www.instagram.com/jack.estetica.canina/`
@@ -73,17 +73,11 @@ Cuando cambies el dominio, el teléfono o el perfil de Instagram, edita solo `sr
 
 ## Próximo lanzamiento
 
-La pantalla de gran apertura se controla con la constante `proximamente` en `src/data/site.ts`, actualmente en `true`.
+La pantalla de gran apertura se controla con `proximamente` en `src/data/site.ts`. Su valor se calcula automáticamente: es `true` mientras la fecha actual sea anterior a `disponibleDesde`.
 
 Mientras esté en `true`, el sitio muestra en todas las páginas el badge de descuento, la fecha `disponibleDesdeLabel` y un contador en vivo hasta `disponibleDesde`. El contador usa la zona `-05:00` de Bogotá; cuando llega la fecha muestra `¡Ya estamos disponibles!`.
 
-Para publicar la landing completa, cambia la constante:
-
-```ts
-export const proximamente = false;
-```
-
-Luego ejecuta `bun run build` y redespliega. No usa variables de entorno ni configuración adicional en Cloudflare.
+El cálculo ocurre durante el build. Como el sitio es estático, el 01 de diciembre de 2026 o después debes ejecutar `bun run build` y redesplegar para publicar la landing completa. No usa variables de entorno ni configuración adicional en Cloudflare.
 
 Cuando está en `true`, la pantalla de apertura agrega `noindex,nofollow` y oculta el JSON-LD.
 
